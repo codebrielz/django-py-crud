@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django CRUD aplication</title>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'home' %}">Home</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'tasks' %}">Tasks pending</a>
+            </li>
+            <li>
+                <a href="{% url 'tasks_completed' %}">Tasks completed</a>
+            </li>
+            <li>
+                <a href="{% url 'create_task' %}">Create tasks</a>
+            </li>
+            <li>
+                <a href="{% url 'logout'%}">Logout</a>
+            </li>
+            {% comment %} Django lo que hace con el metodo login es que crea un objeto global que todas las plantillas 
+            pueden acceder y ese objeto se llama user. {% endcomment %}
+            {% else %}
+            <li>
+                <a href="{% url 'signin' %}">Signin</a>
+            </li>
+            <li>
+                <a href="{% url 'signup' %}">Signup</a>
+            </li>
+          {% endif %}
+        </ul>
+    </nav>
+{% comment %} Aquí ira el contenido de otros templates {% endcomment %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
